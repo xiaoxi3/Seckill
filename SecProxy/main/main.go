@@ -11,7 +11,6 @@ func main() {
 	err := initConfig()
 	if err != nil {
 		panic(err)
-		// fmt.Println(err)
 		return
 	}
 
