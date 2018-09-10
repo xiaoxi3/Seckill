@@ -1,0 +1,2 @@
+2018/09/06 17:28:14.587 [I] [main.go:17]  init sec Succ
+2018/09/06 17:28:14.617 [I] [asm_amd64.s:2361]  http server Running on http://0.0.0.0:9091

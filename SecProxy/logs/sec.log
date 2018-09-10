@@ -1,0 +1,5 @@
+2018/09/10 17:38:26.686 [I] [main.go:17]  init sec Succ
+2018/09/10 17:38:26.702 [I] [asm_amd64.s:2361]  http server Running on http://0.0.0.0:9091
+2018/09/10 17:51:03.257 [D] [init.go:120]  key[%!s(int=0)] values[key:"/xiaoxi/seckill/product" create_revision:6 mod_revision:6 version:1 value:"[{\"ProductId\":1022,\"StartTime\":1536570579,\"EndTime\":1536725271,\"Status\":0,\"Total\":10000,\"Left\":10000}]" ]
+2018/09/10 17:51:03.257 [I] [main.go:17]  init sec Succ
+2018/09/10 17:51:03.273 [I] [asm_amd64.s:2361]  http server Running on http://0.0.0.0:9091

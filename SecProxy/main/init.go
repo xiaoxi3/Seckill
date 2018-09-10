@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -73,9 +74,9 @@ func initLogger() (err error) {
 	config["filename"] = secKillConf.logPath
 	config["level"] = convertLogLevel(secKillConf.logLevel)
 
-	configStr, err := json.Marshal(config)
-	if err != nil {
-		fmt.Println("Marshal failed,err:%v", err)
+	configStr,err := json.Marshal(config)
+	if err != nil{
+		fmt.Println("Marshal failed,err",err)
 	}
 	logs.SetLogger(logs.AdapterFile, string(configStr))
 	return
@@ -83,7 +84,7 @@ func initLogger() (err error) {
 
 func loadSecConf() (err error) {
 	key := fmt.Sprintf("%s/product", secKillConf.etcdConf.etcdSecKey)
-	resp, err := etcdClient.Get(context.background(), key)
+	resp, err := etcdClient.Get(context.Background(), key)
 	if err != nil {
 		logs.Error("get [%s] from etcd failed,err:%v", key, err)
 		return

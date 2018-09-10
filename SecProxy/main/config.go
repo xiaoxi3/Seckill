@@ -82,6 +82,7 @@ func initConfig() (err error) {
 		return
 	}
 	secKillConf.etcdConf.etcdTimeout = etcdTimeout
+
 	secKillConf.etcdConf.etcdSecKey = beego.AppConfig.String("etcd_sec_key")
 	if len(secKillConf.etcdConf.etcdSecKey) == 0 {
 		err = fmt.Errorf("init config failed,read etcd_sec_key error:%v", err)
