@@ -1,0 +1,13 @@
+2018/09/10 17:38:26.686 [I] [main.go:17]  init sec Succ
+2018/09/10 17:38:26.702 [I] [asm_amd64.s:2361]  http server Running on http://0.0.0.0:9091
+2018/09/10 17:51:03.257 [D] [init.go:120]  key[%!s(int=0)] values[key:"/xiaoxi/seckill/product" create_revision:6 mod_revision:6 version:1 value:"[{\"ProductId\":1022,\"StartTime\":1536570579,\"EndTime\":1536725271,\"Status\":0,\"Total\":10000,\"Left\":10000}]" ]
+2018/09/10 17:51:03.257 [I] [main.go:17]  init sec Succ
+2018/09/10 17:51:03.273 [I] [asm_amd64.s:2361]  http server Running on http://0.0.0.0:9091
+2018/09/11 10:21:21.869 [D] [init.go:130]  key[%!s(int=0)] values[key:"/xiaoxi/seckill/product" create_revision:6 mod_revision:6 version:1 value:"[{\"ProductId\":1022,\"StartTime\":1536570579,\"EndTime\":1536725271,\"Status\":0,\"Total\":10000,\"Left\":10000}]" ]
+2018/09/11 10:21:21.870 [D] [init.go:130]  sec info config is [[{1022 1536570579 1536725271 0 10000 10000}]]
+2018/09/11 10:21:21.870 [I] [main.go:17]  init sec Succ
+2018/09/11 10:21:21.882 [I] [asm_amd64.s:2361]  http server Running on http://0.0.0.0:9091
+2018/09/11 11:29:15.109 [D] [init.go:131]  key[%!s(int=0)] values[key:"/xiaoxi/seckill/product" create_revision:6 mod_revision:6 version:1 value:"[{\"ProductId\":1022,\"StartTime\":1536570579,\"EndTime\":1536725271,\"Status\":0,\"Total\":10000,\"Left\":10000}]" ]
+2018/09/11 11:29:15.109 [D] [init.go:131]  sec info config is [[{1022 1536570579 1536725271 0 10000 10000}]]
+2018/09/11 11:29:15.109 [I] [main.go:17]  init sec Succ
+2018/09/11 11:29:15.129 [I] [asm_amd64.s:2361]  http server Running on http://0.0.0.0:9091
