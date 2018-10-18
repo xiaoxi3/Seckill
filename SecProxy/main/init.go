@@ -102,7 +102,13 @@ func loadSecConf() (err error) {
 		}
 		logs.Debug("sec info config is [%v]", secProductInfo)
 	}
-	secKillConf.SecProductInfo = secProductInfo
+
+	secKillConf.rwSecProductLock.Lock()
+	for _, v := range secProductInfo {
+		secKillConf.SecProductInfoMap[v.ProductId] = &v
+	}
+	secKillConf.rwSecProductLock.Unlock()
+
 	return
 }
 
@@ -130,17 +136,18 @@ func initSec() (err error) {
 
 	err = loadSecConf()
 
-	initSecProductWatcher()
-
 	logs.Info("init sec Succ")
+
+	initSecProductWatcher()
 	return
 }
 
+//监听etcd变化
 func initSecProductWatcher() {
 	go watchSecProductKey(secKillConf.etcdConf.etcdSecProductKey)
 }
 
-func initSecProductWatcher(key string) {
+func watchSecProductKey(key string) {
 	cli, err := etcd_client.New(etcd_client.Config{
 		Endpoints:   []string{"127.0.0.1:2379"},
 		DialTimeout: 5 * time.Second,
@@ -154,7 +161,7 @@ func initSecProductWatcher(key string) {
 	logs.Debug("begin watch key:%s", key)
 
 	for {
-		rch := cli.Watch(context.Background, key)
+		rch := cli.Watch(context.Background(), key)
 		var secProductInfo []SecProductInfoConf
 		var getConfSucc = true
 
@@ -166,7 +173,7 @@ func initSecProductWatcher(key string) {
 				}
 
 				if ev.Type == mvccpb.PUT && string(ev.Kv.Key) == key {
-					err = json.Unmarshal(ev.kv.Value, &secProductInfo)
+					err = json.Unmarshal(ev.Kv.Value, &secProductInfo)
 					if err != nil {
 						logs.Error("key unmarshal err:%v", err)
 						getConfSucc = false
@@ -186,5 +193,12 @@ func initSecProductWatcher(key string) {
 }
 
 func updateSecProductInfo(secProductInfo []SecProductInfoConf) {
+	var tmp map[int]*SecProductInfoConf = make(map[int]*SecProductInfoConf, 1024)
+	for _, v := range secProductInfo {
+		tmp[v.ProductId] = &v
+	}
 
+	secKillConf.rwSecProductLock.Lock()
+	secKillConf.SecProductInfoMap = tmp
+	secKillConf.rwSecProductLock.Unlock()
 }

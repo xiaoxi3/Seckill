@@ -4,44 +4,17 @@ import (
 	"fmt"
 	"strings"
 
+	"Seckill/SecProxy/service"
+
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/logs"
 )
 
 var (
-	secKillConf = &SecKillConf{}
+	secKillConf = &service.SecKillConf{
+		SecProductInfoMap: make(map[int]*SecProductInfoConf, 1024),
+	}
 )
-
-type RedisConf struct {
-	redisAddr        string
-	redisMaxIdle     int
-	redisMaxActive   int
-	redisIdleTimeout int
-}
-
-type EtcdConf struct {
-	etcdAddr          string
-	etcdTimeout       int
-	etcdSecKeyPrefix  string
-	etcdSecProductKey string
-}
-
-type SecKillConf struct {
-	redisConf      RedisConf
-	etcdConf       EtcdConf
-	logPath        string
-	logLevel       string
-	SecProductInfo []SecProductInfoConf
-}
-
-type SecProductInfoConf struct {
-	ProductId int
-	StartTime int
-	EndTime   int
-	Status    int
-	Total     int
-	Left      int
-}
 
 func initConfig() (err error) {
 	redisAddr := beego.AppConfig.String("redis_addr")
